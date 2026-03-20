@@ -6,7 +6,7 @@ from retriever import retrieve
 from generator import generate_answer
 
 # Load + process
-docs = load_documents("data/sample.pdf")
+docs = load_documents("data")
 chunks = split_documents(docs)
 embeddings, texts = create_embeddings(chunks)
 index = create_faiss_index(embeddings)
