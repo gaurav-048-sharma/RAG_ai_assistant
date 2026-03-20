@@ -1,0 +1,4 @@
+src/generator.py
+venv
+.mypy_cache/
+.vscode
