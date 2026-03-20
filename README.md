@@ -203,16 +203,6 @@ Final Answer
 
 ---
 
-## 🚀 Future Improvements
-
-- Add Streamlit UI (ChatGPT-like interface)
-- Implement hybrid search (BM25 + embeddings)
-- Add reranking for better retrieval accuracy
-- Add chat history and memory
-- Deploy on cloud (AWS / Docker)
-
----
-
 ## 🧠 Learning Outcomes
 
 - Deep understanding of RAG architecture
