@@ -14,10 +14,103 @@ A production-style Retrieval-Augmented Generation (RAG) system that allows users
 - 🤖 Response generation using local LLM (LLaMA 3 via Ollama)
 - 💻 Fully local execution (no API cost)
 
+
+
+---
+
+## 📦 Tech Stack
+
+### 🧠 AI / ML
+- **sentence-transformers**
+  - Used to generate embeddings for text chunks
+  - Model: `all-MiniLM-L6-v2`
+  - Converts text → numerical vectors for semantic search
+
+---
+
+### 📚 Document Processing
+- **langchain-community**
+  - Used for loading PDF documents (`PyPDFLoader`)
+  - Simplifies document ingestion pipeline
+
+---
+
+### 🔍 Vector Database
+- **FAISS (Facebook AI Similarity Search)**
+  - Stores embeddings efficiently
+  - Performs fast nearest-neighbor search
+  - Core of retrieval system
+
+---
+
+### 🤖 LLM (Local)
+- **Ollama**
+  - Runs local LLMs like `llama3`
+  - Used for answer generation
+  - Eliminates need for paid APIs
+
+---
+
+### 🌐 Backend & API
+- **requests**
+  - Sends HTTP requests to Ollama API
+  - Handles communication between Python and LLM
+
+---
+
+### 🧮 Data Handling
+- **numpy**
+  - Used for numerical operations
+  - Required for FAISS vector handling
+
+- **pickle**
+  - Saves and loads processed text data
+  - Enables persistence of embeddings
+
+---
+
+### 🖥️ Frontend
+- **streamlit**
+  - Builds interactive web UI
+  - Provides chat interface for users
+
+---
+
+## 📁 Project Structure
+
+rag-ai-assistant/
+│
+├── data/ # Input PDFs
+│
+├── src/
+│ ├── loader.py # Load PDFs
+│ ├── chunker.py # Split text into chunks
+│ ├── embedder.py # Create embeddings
+│ ├── vectorstore.py # FAISS index handling
+│ ├── retriever.py # Retrieve + rerank
+│ ├── generator.py # LLM response generation
+│ └── app.py # CLI interface
+│
+├── streamlit_app.py # Web UI
+├── faiss_index.bin # Saved vector index
+├── texts.pkl # Stored text chunks
+└── README.md
+
 ---
 
 ## 🏗️ Project Architecture
 
+User Query
+↓
+Retriever (FAISS + Embeddings)
+↓
+Reranking (Cosine Similarity)
+↓
+Context Injection
+↓
+LLM (Ollama - LLaMA3)
+↓
+Final Answer
 ---
 
 ## ⚙️ Tech Stack
