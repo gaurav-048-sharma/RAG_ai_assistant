@@ -3,7 +3,7 @@ from loader import load_documents
 from chunker import split_documents
 from embedder import create_embeddings
 from vectorstore import create_faiss_index, save_index, load_index
-from retriever import retrieve
+from hybrid_retriever import HybridRetriever   # ✅ UPDATED
 from generator import generate_answer
 
 # If index exists → load
@@ -23,16 +23,20 @@ else:
 
     print("✅ Index created successfully!")
 
+# ✅ Initialize Hybrid Retriever ONCE (IMPORTANT)
+retriever = HybridRetriever(index, texts)
+
 # Chat loop
 while True:
     query = input("\nAsk something: ")
 
-    results = retrieve(query, index, texts)
+    # ✅ Use hybrid retrieval
+    results = retriever.retrieve(query)
     context = "\n".join(results)
 
     # 🔍 Debug (IMPORTANT)
     print("\n--- Retrieved Context ---\n")
-    print(context[:500])  # first 500 chars
+    print(context[:500])
     print("\n------------------------\n")
 
     answer = generate_answer(query, context)
